@@ -10,14 +10,25 @@
   <body class="login-body">
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-5">
+          <div class="col-md-6">
             <div class="card p-3">
               <div class="card-header text-center">
                   <h3>Pustaka Digital</h3>
                   <p>Sistem Perpustakaan Nasional</p>
               </div>
               <div class="card-body">
-                <form action="proses_login.php" method="POST">
+                <?php
+                if (isset($_GET['pesan'])) {
+                    if ($_GET['pesan'] == 'password_salah') {
+                        echo '<div class="alert alert-danger" role="alert">Password salah!</div>';
+                    } else if ($_GET['pesan'] == 'logout_berhasil') {
+                        echo '<div class="alert alert-success" role="alert">Logout berhasil!</div>';
+                    } else if ($_GET['pesan'] == 'belum_login') {
+                        echo '<div class="alert alert-warning" role="alert">Anda harus login terlebih dahulu!</div>';
+                    }
+                }
+                ?>
+                <form action="login_proses.php" method="POST">
                   <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" class="form-control" id="username" name="username" required>
@@ -33,7 +44,7 @@
           </div>
         </div>
       </div>
-  </body>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </body>
 </html>

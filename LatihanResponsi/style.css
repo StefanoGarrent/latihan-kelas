@@ -1,7 +1,3 @@
-body {
-
-}
-
 .login-body {
     display: flex;
     align-items: center;
@@ -29,4 +25,19 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.edit-body {
+    background-color: #dee7ff;
+    min-height: 100vh;
+}
+
+.edit-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edit-container {
+    width: 70%;
 }

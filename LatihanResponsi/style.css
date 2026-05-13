@@ -1,4 +1,5 @@
 body {
+
 }
 
 .login-body {
@@ -13,4 +14,19 @@ body {
     background-color: white;
     color: black;
     border-bottom: none;
+}
+
+.koleksi-body {
+    background-color: #dee7ff;
+    min-height: 100vh;
+}
+
+.koleksi-container {
+    width: 90%;
+}
+
+.koleksi-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

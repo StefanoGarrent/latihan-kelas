@@ -7,7 +7,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
 
 include 'koneksi.php';
 if (isset($_POST['simpan'])) {
-    $id = $_POST['id'];
+    $id = $_GET['id'];
     $kode_buku = $_POST['kode_buku'];
     $judul = $_POST['judul'];
     $pengarang = $_POST['pengarang'];

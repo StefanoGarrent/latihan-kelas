@@ -64,7 +64,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
                     <h2 class="card-title text-center">Form Edit Buku</h2>
                 </div>
                 <div class="card-body">
-                    <form action="edit_proses_koleksi.php" method="POST">
+                    <form action="edit_proses_koleksi.php?id=<?php echo $id; ?>" method="POST">
                         <div class="mb-3">
                             <label class="form-label" for="id">ID Buku</label>
                             <input type="text" name="id" class="form-control" value="<?php echo $id; ?>" disabled>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
                         </div>
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button class="btn btn-secondary" type="button" onclick="window.location.href='koleksi.php'">Kembali</button>
-                            <button class="btn btn-primary" type="submit">Simpan Perubahan</button>
+                            <button class="btn btn-primary" type="submit" name="simpan">Simpan Perubahan</button>
                         </div>
                     </form>
                 </div>

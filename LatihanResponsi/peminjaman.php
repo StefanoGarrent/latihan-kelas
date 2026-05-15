@@ -79,10 +79,20 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
                             $no = 1;
                             while ($row = mysqli_fetch_assoc($resultTampil)) {
                                 $id_buku = $row['id_buku'];     
-                                                           
+
                                 $ambilJudulBuku = "SELECT judul FROM buku WHERE id='$id_buku'";
                                 $resultJudul = mysqli_query($conn, $ambilJudulBuku);
                                 $dataJudul = mysqli_fetch_assoc($resultJudul);
+
+                                $tanggal_kembali = $row['tanggal_kembali'];
+                                $tanggal_hari_ini = date('Y-m-d');
+
+                                if ($row['status'] == 'Dipinjam' && $tanggal_kembali < $tanggal_hari_ini) {
+                                    $updateStatus = "UPDATE peminjaman SET status = 'Terlambat' WHERE id='" . $row['id'] . "'";
+                                    mysqli_query($conn, $updateStatus);
+                                    $row['status'] = 'Terlambat';
+                                }
+
                                 ?>
                         <tr>
                             <th scope="row"><?php echo $no; ?></th>
@@ -94,13 +104,13 @@ if (!isset($_SESSION['status']) || $_SESSION['status'] != 'login') {
                             <td><?php echo $row['status']; ?></td>
                             <td>
                                 <?php 
-                                if ($row['status'] == 'Dipinjam') { ?>
-                                    <a href="kembali_proses.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Kembalikan</a>
-                                <?php } else { ?>
+                                if ($row['status'] == 'Dikembalikan' && $row['tanggal_kembali'] < $tanggal_hari_ini) { ?>
+                                    <button class="btn btn-warning btn-sm" disabled>Selesai Terlambat</button>
+                                <?php } else if ($row['status'] == 'Dikembalikan') { ?>
                                     <button class="btn btn-success btn-sm" disabled>Selesai</button>
-                                 <?php
-                                }
-                                ?>
+                                <?php } else { ?>
+                                    <a href="kembali_proses.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">Kembalikan</a>
+                                <?php } ?>
                             </td>
                         </tr>
                         <?php
